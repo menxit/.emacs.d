@@ -12,3 +12,6 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; switch buffer using M-o
+(global-set-key (kbd "M-o") 'other-window)
