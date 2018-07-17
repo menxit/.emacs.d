@@ -15,3 +15,14 @@
 
 ;; switch buffer using M-o
 (global-set-key (kbd "M-o") 'other-window)
+
+;; helm
+(require 'helm-config)
+
+;; packages
+(custom-set-variables
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(package-selected-packages (quote (helm))))
+(custom-set-faces
+ )
