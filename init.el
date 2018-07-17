@@ -4,3 +4,4 @@
 (load  "~/.emacs.d/emulate-mac-keyboard-mode.el")
 (setq emulate-mac-finnish-keyboard-mode t)
 (setq mac-right-option-modifier nil)
+
