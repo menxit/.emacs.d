@@ -8,3 +8,7 @@
 (setq ns-alternate-modifier 'meta)
 (setq ns-right-alternate-modifier 'none)
 
+;; ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
