@@ -6,7 +6,15 @@
 
 ;; list the packages you want
 (setq package-list
-    '(helm company magit twilight-bright-theme))
+      '(helm
+	company
+	magit
+	twilight-bright-theme
+	page-break-lines
+	projectile
+	dashboard
+	pandoc-mode
+	markdown-mode))
 
 ;; activate all the packages
 (package-initialize)
@@ -20,9 +28,23 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; disable-toolbar
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+(menu-bar-mode -1)
+
+;; full-screen on startup
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; dashboard
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(setq dashboard-banner-logo-title "The Matrix has you...")
+
 ;; load theme
 (require 'twilight-bright-theme)
-(load-theme twilight-bright t)
+(load-theme 'twilight-bright t)
 
 ;; special characters using right alt
 (setq ns-alternate-modifier 'meta)
@@ -48,7 +70,8 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-;; javascript
+;; markdow-mode and pandoc bin
+(setq markdown-command "pandoc")
 
 ;; typescript
 (defun setup-tide-mode ()
@@ -84,7 +107,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (twilight-bright-theme rjsx-mode js2-mode magit company helm))))
+    (markdown-mode pandoc-mode dashboard projectile page-break-lines twilight-bright-theme rjsx-mode js2-mode magit company helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
