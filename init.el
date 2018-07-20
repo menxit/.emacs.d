@@ -105,6 +105,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Desktop/prova.org" "~/Desktop/tesi.org")))
  '(package-selected-packages
    (quote
     (markdown-mode pandoc-mode dashboard projectile page-break-lines twilight-bright-theme rjsx-mode js2-mode magit company helm))))
