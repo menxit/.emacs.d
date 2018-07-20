@@ -14,7 +14,8 @@
 	projectile
 	dashboard
 	pandoc-mode
-	markdown-mode))
+	markdown-mode
+	which-key))
 
 ;; activate all the packages
 (package-initialize)
@@ -36,6 +37,11 @@
 ;; full-screen on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; which-key
+(setq which-key-separator " ")
+(setq which-key-prefix-prefix "+")
+(which-key-mode 1)
+ 
 ;; dashboard
 (require 'dashboard)
 (dashboard-setup-startup-hook)
@@ -108,7 +114,7 @@
  '(org-agenda-files (quote ("~/Desktop/prova.org" "~/Desktop/tesi.org")))
  '(package-selected-packages
    (quote
-    (markdown-mode pandoc-mode dashboard projectile page-break-lines twilight-bright-theme rjsx-mode js2-mode magit company helm))))
+    (which-key markdown-mode pandoc-mode dashboard projectile page-break-lines twilight-bright-theme rjsx-mode js2-mode magit company helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
