@@ -1,6 +1,3 @@
-;; author:  Federico Ginosa
-;; email:   federico@menxit.com
-
 ;; packages repo
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
