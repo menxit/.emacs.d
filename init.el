@@ -1,3 +1,6 @@
+;; author:  Federico Ginosa
+;; email:   federico@menxit.com
+
 ;; packages repo
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -15,7 +18,8 @@
 	dashboard
 	pandoc-mode
 	markdown-mode
-	which-key))
+	which-key
+	projectile))
 
 ;; activate all the packages
 (package-initialize)
@@ -34,6 +38,13 @@
 (toggle-scroll-bar -1)
 (menu-bar-mode -1)
 
+;; project manager
+(setq projectile-require-project-root nil)
+(projectile-mode 1)
+
+;; backup file in .emacs.d/.save folder
+(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+
 ;; full-screen on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -51,6 +62,12 @@
 ;; load theme
 (require 'twilight-bright-theme)
 (load-theme 'twilight-bright t)
+
+;; Fancy titlebar for MacOS
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(setq ns-use-proxy-icon  nil)
+(setq frame-title-format nil)
 
 ;; special characters using right alt
 (setq ns-alternate-modifier 'meta)
