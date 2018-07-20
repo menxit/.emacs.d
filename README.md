@@ -1,7 +1,8 @@
 # How to install
 
 ```bash
+npm i -g typescript
+brew install pandoc
 rm -rf .emacs.d
-git clone --recurse-submodules -j8 git@github.com:menxit/.emacs.d.git
-./install.sh
+git clone git@github.com:menxit/.emacs.d.git
 ```

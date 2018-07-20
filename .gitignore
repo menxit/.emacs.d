@@ -1,4 +1,5 @@
 *
 !init.el
+custom.el
+lib/install-use-package.el
 README.md
-install.sh

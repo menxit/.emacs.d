@@ -1,109 +1,102 @@
-;; packages repo
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-  ("marmalade" . "http://marmalade-repo.org/packages/")
-  ("melpa" . "http://melpa.milkbox.net/packages/")))
+;; install use-package
+(load "~/.emacs.d/lib/install-use-package.el")
 
-;; list the packages you want
-(setq package-list
-      '(helm
-	company
-	magit
-	twilight-bright-theme
-	page-break-lines
-	projectile
-	dashboard
-	pandoc-mode
-	markdown-mode
-	which-key
-	projectile))
+;; path
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
-;; activate all the packages
-(package-initialize)
-
-;; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+;; backup file in .emacs.d/.save folder
+(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
 
 ;; disable-toolbar
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (menu-bar-mode -1)
 
-;; project manager
-(setq projectile-require-project-root nil)
-(projectile-mode 1)
-
-;; backup file in .emacs.d/.save folder
-(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
-
 ;; full-screen on startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; which-key
-(setq which-key-separator " ")
-(setq which-key-prefix-prefix "+")
-(which-key-mode 1)
- 
-;; dashboard
-(require 'dashboard)
-(dashboard-setup-startup-hook)
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-(setq dashboard-banner-logo-title "The Matrix has you...")
-
-;; load theme
-(require 'twilight-bright-theme)
-(load-theme 'twilight-bright t)
-
-;; Fancy titlebar for MacOS
+;; fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 
-;; special characters using right alt
-(setq ns-alternate-modifier 'meta)
-(setq ns-right-alternate-modifier 'none)
+;; magit
+(use-package magit
+	:ensure t)
 
-;; ido-mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+;; project manager
+(use-package projectile
+	:ensure t
+	:config
+	(setq projectile-require-project-root nil)
+	(projectile-mode 1))
 
-;; switch buffer using M-o
-(global-set-key (kbd "M-o") 'other-window)
+;; helm configuration
+(use-package helm
+	:ensure t
+	:config
+	(global-set-key (kbd "M-x") 'helm-M-x)
+	(global-set-key (kbd "C-x C-m") 'helm-M-x)
+	(global-set-key (kbd "C-x b") 'helm-mini)
+	(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+	(global-set-key (kbd "C-h f") 'helm-apropos))
 
-;; helm
-(require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-m") 'helm-M-x)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-h f") 'helm-apropos)
+;; which-key
+(use-package which-key
+	:ensure t
+	:config
+	(setq which-key-separator " ")
+	(setq which-key-prefix-prefix "+")
+	(which-key-mode 1))
 
-;; path
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+;; theme
+(use-package twilight-bright-theme
+	:ensure t
+	:config
+	(load-theme 'twilight-bright t))
 
-;; markdow-mode and pandoc bin
-(setq markdown-command "pandoc")
+;; dashboard
+(use-package dashboard
+	:ensure t
+	:config
+	(dashboard-setup-startup-hook)
+	(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+	(setq dashboard-banner-logo-title "The Matrix has you..."))
 
 ;; typescript
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+(use-package tide
+	:ensure t
+	:after (typescript-mode company flycheck)
+	:hook ((typescript-mode . tide-setup)
+		(typescript-mode . tide-hl-identifier-mode)
+		(before-save . tide-format-before-save)))
+	:config
+		(defun setup-tide-mode ()
+			(interactive)
+			(tide-setup)
+			(flycheck-mode +1)
+			(setq flycheck-check-syntax-automatically '(save mode-enabled))
+			(eldoc-mode +1)
+			(tide-hl-identifier-mode +1)
+			(company-mode +1))
+
+;; markdown
+(use-package pandoc-mode
+	:ensure t)
+(use-package markdown-mode
+	:ensure t
+	:after (markdown-mode)
+	:config
+		(setq markdown-command "pandoc"))
+
+;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
 (add-hook 'before-save-hook 'tide-format-before-save)
+
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 ;; rename current buffer
@@ -120,18 +113,15 @@
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Desktop/prova.org" "~/Desktop/tesi.org")))
- '(package-selected-packages
-   (quote
-    (which-key markdown-mode pandoc-mode dashboard projectile page-break-lines twilight-bright-theme rjsx-mode js2-mode magit company helm))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;; ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; switch buffer using M-o
+(global-set-key (kbd "M-o") 'other-window)
+
+;; special characters using right alt
+(setq ns-alternate-modifier 'meta)
+(setq ns-right-alternate-modifier 'none)
