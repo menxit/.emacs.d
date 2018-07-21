@@ -6,9 +6,9 @@
 
 ;; theme
 (use-package twilight-bright-theme
-	:ensure t
-	:config
-	(load-theme 'twilight-bright t))
+  :ensure t
+  :config
+  (load-theme 'twilight-bright t))
 
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)
 (global-set-key (kbd "M-o") 'other-window)
