@@ -10,5 +10,10 @@
   :config
   (load-theme 'twilight-bright t))
 
+;; all files under ~/org must be added inside org-agenda
+(setq org-agenda-files (quote ("~/org")))
+
+;; shortcuts
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "<f12>") 'org-agenda)
