@@ -16,6 +16,9 @@
 ;; avoid to write init.el
 (setq custom-file "~/.emacs.d/custom.el")
 
+;; system compy
+(setq x-select-enable-clipboard t)
+
 ;; path
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
