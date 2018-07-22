@@ -2,9 +2,9 @@
 (load "~/.emacs.d/layers/+emacs/emacs.el")
 (load "~/.emacs.d/layers/+theme/theme.el")
 (load "~/.emacs.d/layers/+agenda/agenda.el")
-(load "~/.emacs.d/layers/+javascript/versioning.el")
+(load "~/.emacs.d/layers/+versioning/versioning.el")
 (load "~/.emacs.d/layers/+javascript/javascript.el")
-(load "~/.emacs.d/layers/+javascript/markdown.el")
+(load "~/.emacs.d/layers/+markdown/markdown.el")
 
 ;; shortcuts
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)
