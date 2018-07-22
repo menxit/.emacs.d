@@ -1,17 +1,10 @@
-;; install use-package
-(load "~/.emacs.d/lib/install-use-package.el")
-
-;; general preferences
-(load "~/.emacs.d/lib/general.el")
-
-;; theme
-(use-package twilight-bright-theme
-  :ensure t
-  :config
-  (load-theme 'twilight-bright t))
-
-;; all files under ~/org must be added inside org-agenda
-(setq org-agenda-files (quote ("~/org")))
+;; layers
+(load "~/.emacs.d/layers/+emacs/emacs.el")
+(load "~/.emacs.d/layers/+theme/theme.el")
+(load "~/.emacs.d/layers/+agenda/agenda.el")
+(load "~/.emacs.d/layers/+javascript/versioning.el")
+(load "~/.emacs.d/layers/+javascript/javascript.el")
+(load "~/.emacs.d/layers/+javascript/markdown.el")
 
 ;; shortcuts
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)

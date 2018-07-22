@@ -1,5 +1,6 @@
-*
+*/
+/*
 !init.el
-custom.el
-lib/install-use-package.el
-README.md
+!layers**/**
+!README.md
+.DS_Store
