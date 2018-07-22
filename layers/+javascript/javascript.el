@@ -6,6 +6,7 @@
 	 (typescript-mode . tide-hl-identifier-mode)
 	 (before-save . tide-format-before-save))
   :config
+  (setq company-idle-delay 0)
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)

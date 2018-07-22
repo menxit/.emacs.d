@@ -13,3 +13,4 @@
 (global-set-key (kbd "C-c l") 'next-buffer)
 (global-set-key (kbd "<f12>") 'org-agenda)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-p") 'projectile-find-file)

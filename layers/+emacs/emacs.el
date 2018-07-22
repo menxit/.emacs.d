@@ -19,6 +19,9 @@
 ;; system compy
 (setq x-select-enable-clipboard t)
 
+;; numbers
+(global-linum-mode t)
+
 ;; path
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -27,7 +30,7 @@
   :ensure t
   :config
   (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize)))
 
 ;; backup file in .emacs.d/.save folder
 (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
@@ -73,20 +76,71 @@
   (setq which-key-prefix-prefix "+")
   (which-key-mode 1))
 
+;; project manager
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  (setq projectile-globally-ignored-directories
+	(append '(
+		  ".git"
+		  ".svn"
+		  "out"
+		  "repl"
+		  "target"
+		  "venv"
+		  "node_modules"
+		  )
+		projectile-globally-ignored-directories))
+  (setq projectile-globally-ignored-files
+	(append '(
+		  ".DS_Store"
+		  "#*#"
+		  "*.map"
+		  "*.gz"
+		  "*.pyc"
+		  "*.jar"
+		  "*.tar.gz"
+		  "*.tgz"
+		  "*.zip"
+		  )
+		projectile-globally-ignored-files))
+  (setq projectile-globally-ignored-files ("node_modules" ".git" "#*#" ".DS_Store"))
+  (setq projectile-use-native-indexing t)
+  (setq projectile-indexing-method 'native)
+  (setq projectile-enable-caching t)
+  (setq projectile-require-project-root nil)
+  (setq projectile-switch-project-action 'projectile-dired)
+  (setq projectile-switch-project-action 'projectile-find-dir)
+  (setq projectile-find-dir-includes-top-level t))
+
+;; navigation
+(use-package treemacs
+  :ensure t
+  :bind
+  (:map global-map
+        ([f8] . treemacs))
+  :config
+  (setq treemacs-no-png-images t)
+  (setq treemacs-width 40))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
 ;; dashboard
 (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner 2)
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-banner-logo-title "The Matrix has you..."))
-
-;; project manager
-(use-package projectile
-  :ensure t
-  :config
-  (setq projectile-require-project-root nil)
-  (projectile-mode 1))
+  (setq dashboard-banner-logo-title "The Matrix has you...")
+  (setq dashboard-items '((projects  . 10)
+                          (bookmarks . 5)
+                          (recents . 5)
+                          (agenda . 5)
+                          (registers . 5))))
 
 ;; special characters using right alt
 (setq ns-alternate-modifier 'meta)
