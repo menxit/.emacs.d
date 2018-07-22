@@ -3,4 +3,5 @@
 !init.el
 !layers**/**
 !README.md
+!lmutracker.mm
 .DS_Store
