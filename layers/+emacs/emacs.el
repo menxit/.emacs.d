@@ -155,3 +155,8 @@
   ("C-x C-b" . helm-buffers-list)
   ("C-h f" . helm-apropos))
 
+;; poweline
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
