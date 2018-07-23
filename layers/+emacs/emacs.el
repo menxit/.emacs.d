@@ -122,7 +122,13 @@
         ([f8] . treemacs))
   :config
   (setq treemacs-no-png-images t)
-  (setq treemacs-width 40))
+  (setq treemacs-width 40)
+  (setq treemacs-python-executable (executable-find "python3"))
+  (treemacs-git-mode 'deferred)
+  (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?)
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'extended))
 
 (use-package treemacs-projectile
   :after treemacs projectile
