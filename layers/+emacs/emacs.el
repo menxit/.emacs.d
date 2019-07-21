@@ -105,7 +105,6 @@
 		  "*.zip"
 		  )
 		projectile-globally-ignored-files))
-  (setq projectile-globally-ignored-files ("node_modules" ".git" "#*#" ".DS_Store"))
   (setq projectile-use-native-indexing t)
   (setq projectile-indexing-method 'native)
   (setq projectile-enable-caching t)
