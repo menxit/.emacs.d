@@ -1,9 +1,7 @@
-(use-package solarized-theme
+(use-package flatland-theme
   :ensure t)
 
-(defconst light-theme 'solarized-light)
-(defconst dark-theme 'solarized-dark)
-(setq current-theme dark-theme)
+(load-theme 'flatland t)
 
 (set-face-attribute 'default nil :height 140)
 
