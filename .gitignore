@@ -3,7 +3,7 @@
 !init.el
 !layers**/**
 !README.org
-!Makefile
+!install.sh
 .DS_Store
 
 

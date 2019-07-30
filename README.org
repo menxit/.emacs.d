@@ -2,5 +2,5 @@
 
 ** How to install
 #+BEGIN_SRC 
-make install
+curl -s -L https://raw.githubusercontent.com/menxit/.emacs.d/master/install.sh | bash
 #+END_SRC
