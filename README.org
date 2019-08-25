@@ -1,6 +1,15 @@
-* Guide
+* Guida
 
-** How to install
-#+BEGIN_SRC 
-curl -s -L https://raw.githubusercontent.com/menxit/.emacs.d/master/install.sh | bash
-#+END_SRC
+** Come usare l'agenda
+L'agenda si divide in 6 file:
+- inbox.org :: punto di ingresso di qualunque attività
+- tickler.org :: attività schedulate
+- archive.org :: attività svolte o cancellate
+- gtd.org :: progetti con sotto-attività
+- someday.org :: qualche cosa che desidererai fare un giorno
+- reference.org :: materiale utile da memorizzare
+
+** Shortcut
+- M-f :: cerca in un punto qualunque tra i file dell'agenda
+- C-c c :: i, t, s
+- C-c C-w :: sposta un elemento in un file
