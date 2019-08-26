@@ -138,13 +138,9 @@
   :ensure t
   :config
   (dashboard-setup-startup-hook)
-  (setq dashboard-startup-banner 2)
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-banner-logo-title "The Matrix has you...")
-  (setq dashboard-items '((projects  . 10)
-                          (bookmarks . 5)
-                          (recents . 5)
-                          (agenda . 5)
+  (setq show-week-agenda-p t)
+  (setq dashboard-items '((agenda . 5)
+			  (recents . 5)
                           (registers . 5))))
 
 ;; special characters using right alt

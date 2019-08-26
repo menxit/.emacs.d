@@ -13,3 +13,5 @@ L'agenda si divide in 6 file:
 - M-f :: cerca in un punto qualunque tra i file dell'agenda
 - C-c c :: i, t, s
 - C-c C-w :: sposta un elemento in un file
+- C-c a :: mostra elementi TODO, NEXT e WAITING (r, refresh)
+- g :: regresh in dashboard

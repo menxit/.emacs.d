@@ -8,6 +8,7 @@
 (load "~/.emacs.d/layers/+markdown/markdown.el")
 
 ;; shortcuts
+(global-set-key (kbd "C-c a") 'org-todo-list)
 (global-set-key (kbd "M-f") 'helm-org-rifle)
 (global-set-key (kbd "C-c c")  'org-capture)
 (global-set-key (kbd "C-c r")  'rename-file-and-buffer)
