@@ -6,7 +6,7 @@
 (setq-default line-spacing 1)
 
 ;; Font
-(set-default-font "Monaco 14")
+(set-frame-font "Monaco 14")
 
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
